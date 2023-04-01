@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAVASCRIPT PHOTO SLIDER</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="photodiv">
+    <img id="photoimg" >
+</div>
+
+<div id="btns">
+<button id="previous" onclick="previousphoto()">Previous</button>
+<button id="next" onclick="nextphoto()">Next</button>
+<button id="startslide" onclick="startslide()">Start Slide</button>
+<button id="stopslide" onclick="stopslide()">Stop Slide</button>
+</div>
+
+</body>
+<script>
+
+const photoImg = document.getElementById("photoimg");
+
+const photos = ["bir.jpg","iki.jpg","uc.jpg"];
+
+let photoIndex = 0;
+
+photoImg.src = "img/"+photos[photoIndex];
+
+function previousphoto() {
+   
+   photoIndex =  photoIndex - 1;
+   
+   if ( photoIndex < 0 ) {
+       
+       photoIndex = photos.length - 1 ;
+   }
+
+   
+   photoImg.src = "img/"+photos[photoIndex];
+
+}
+
+function nextphoto() {
+   
+    photoIndex =  photoIndex + 1;
+    
+    if ( photoIndex >= photos.length ) {
+        
+        photoIndex = 0 ;
+    }
+
+    
+    photoImg.src = "img/"+photos[photoIndex];
+
+}
+
+let autoSlide;
+
+function startslide() {
+
+    autoSlide =  setInterval(slide,1500);
+
+}
+
+function stopslide() {
+
+clearInterval(autoSlide);
+
+}
+
+function slide() {
+
+    photoIndex =  photoIndex + 1;
+    
+    if ( photoIndex >= photos.length ) {
+        
+        photoIndex = 0 ;
+    }
+
+    
+    photoImg.src = "img/"+photos[photoIndex];
+
+}
+
+</script>
+</html>
